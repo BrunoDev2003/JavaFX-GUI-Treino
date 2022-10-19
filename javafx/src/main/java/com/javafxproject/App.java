@@ -15,7 +15,7 @@ import java.io.IOException;
 /**
  * JavaFX App
  */
-public class App extends Application implements EventHandler<ActionEvent> {
+public class App extends Application  {
 
     private static Scene scene;
     Button button = new Button(); 
@@ -27,10 +27,13 @@ public class App extends Application implements EventHandler<ActionEvent> {
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("primary"), 640, 480);
         stage.setScene(scene);
-        stage.setTitle("Title of the window");
+        stage.setTitle("Titulo da janela");
         button.setText("Click"); 
 
-        button.setOnAction(this);
+        button.setOnAction(e -> {
+            System.out.println("olá olá");
+            System.out.println("sou uma expressão lambda!");
+        });
 
         StackPane layout = new StackPane();
         layout.getChildren().add(button);
@@ -40,16 +43,6 @@ public class App extends Application implements EventHandler<ActionEvent> {
         stage.show();
 
 
-    }
-
-    
-
-    @Override
-    public void handle(ActionEvent event) {
-        if(event.getSource()== button ) {
-            System.out.println("OJSOJSODJDODJ");
-        }
-        
     }
 
 
