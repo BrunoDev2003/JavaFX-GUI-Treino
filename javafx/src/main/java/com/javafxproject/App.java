@@ -29,27 +29,18 @@ public class App extends Application  {
     @Override
     public void start(Stage primaryStage) throws IOException {
         window = primaryStage;
+        window.setTitle("Bruno's window");
 
-        Label label1 = new Label("Label is just a string of text, that we can put text into");
-        Button button1 = new Button("Go to scene2");
-        button1.setOnAction(e -> window.setScene(scene2));
-
-        //layout 1 - children are laid out in vertical column 
-        VBox layout1 = new VBox(20);
-        layout1.getChildren().addAll(label1, button1);
-        scene1 = new Scene(layout1, 400, 250);
-
-        // Button 2
-        Button button2 = new Button("I don't like this scene, go back to the first one please :)");
-        button2.setOnAction(e -> window.setScene(scene1));
-
-        // Layout 2
-        StackPane layout2 = new StackPane();
-        layout2.getChildren().add(button2);
-        scene2 = new Scene(layout2, 800, 400);
-
-        window.setScene(scene1);
-        window.setTitle("Title right here");
+        Button button = new Button("click me");
+        button.setOnAction(e -> {
+            boolean result = confirmBox.display("Title of window", "are you sure you want to send naked pics to your ex GF??");
+            System.out.println(result);
+        });
+        
+        StackPane layout = new StackPane();
+        layout.getChildren().add(button);
+        Scene scene = new Scene(layout, 300, 250);
+        window.setScene(scene);
         window.show();
     }
 
