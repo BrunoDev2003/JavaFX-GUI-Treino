@@ -31,17 +31,34 @@ public class App extends Application  {
         window = primaryStage;
         window.setTitle("Bruno's window");
 
+        window.setOnCloseRequest(e -> {
+            e.consume();
+            closeProgram();
+        });
+
         Button button = new Button("click me");
         button.setOnAction(e -> {
             boolean result = confirmBox.display("Title of window", "are you sure you want to send naked pics to your ex GF??");
             System.out.println(result);
         });
+
+        Button button2 = new Button("Close program");
+        button2.setOnAction(e -> closeProgram());
+        
         
         StackPane layout = new StackPane();
         layout.getChildren().add(button);
+        layout.getChildren().add(button2);
         Scene scene = new Scene(layout, 300, 250);
         window.setScene(scene);
         window.show();
+    }
+
+    private void closeProgram() {
+        Boolean answer = confirmBox.display("title", "Sure you want to quit?");
+        if(answer) {
+            window.close();
+        }
     }
 
 
