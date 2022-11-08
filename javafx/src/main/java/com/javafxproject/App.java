@@ -8,6 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -31,34 +33,26 @@ public class App extends Application  {
         window = primaryStage;
         window.setTitle("Bruno's window");
 
-        window.setOnCloseRequest(e -> {
-            e.consume();
-            closeProgram();
-        });
+        HBox topMenu = new HBox();
+        Button buttonA = new Button("Arquivo");
+        Button buttonB = new Button("Edit");
+        Button buttonC = new Button("View");
+        topMenu.getChildren().addAll(buttonA, buttonB, buttonC);
 
-        Button button = new Button("click me");
-        button.setOnAction(e -> {
-            boolean result = confirmBox.display("Title of window", "are you sure you want to send naked pics to your ex GF??");
-            System.out.println(result);
-        });
+        VBox leftMenu = new VBox();
+        Button buttonD = new Button("D");
+        Button buttonE = new Button("E");
+        Button buttonF = new Button("F");
+        topMenu.getChildren().addAll(buttonD, buttonE, buttonF);
 
-        Button button2 = new Button("Close program");
-        button2.setOnAction(e -> closeProgram());
-        
-        
-        StackPane layout = new StackPane();
-        layout.getChildren().add(button);
-        layout.getChildren().add(button2);
-        Scene scene = new Scene(layout, 300, 250);
+        BorderPane borderPane = new BorderPane();
+        borderPane.setTop(topMenu);
+        borderPane.setLeft(leftMenu);
+
+        Scene scene = new Scene (borderPane, 300, 300);
         window.setScene(scene);
         window.show();
-    }
 
-    private void closeProgram() {
-        Boolean answer = confirmBox.display("title", "Sure you want to quit?");
-        if(answer) {
-            window.close();
-        }
     }
 
 
