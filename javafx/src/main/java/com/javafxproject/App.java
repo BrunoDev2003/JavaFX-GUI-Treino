@@ -4,11 +4,14 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -33,24 +36,37 @@ public class App extends Application  {
         window = primaryStage;
         window.setTitle("Bruno's window");
 
-        HBox topMenu = new HBox();
-        Button buttonA = new Button("Arquivo");
-        Button buttonB = new Button("Edit");
-        Button buttonC = new Button("View");
-        topMenu.getChildren().addAll(buttonA, buttonB, buttonC);
 
-        VBox leftMenu = new VBox();
-        Button buttonD = new Button("D");
-        Button buttonE = new Button("E");
-        Button buttonF = new Button("F");
-        topMenu.getChildren().addAll(buttonD, buttonE, buttonF);
+        GridPane grid = new GridPane();
+        grid.setPadding(new Insets(10, 10, 10, 10));
+        grid.setVgap(9);
+        grid.setHgap(9);
 
-        BorderPane borderPane = new BorderPane();
-        borderPane.setTop(topMenu);
-        borderPane.setLeft(leftMenu);
+        //Name label 
+        Label nameLabel = new Label("Username:");
+        GridPane.setConstraints(nameLabel, 0, 0);
 
-        Scene scene = new Scene (borderPane, 300, 300);
+        //Name input 
+        TextField nameInput = new TextField("Bruno");
+        GridPane.setConstraints(nameInput, 1,0);
+
+        //Password label 
+        Label passLabel = new Label("Password:");
+        GridPane.setConstraints(passLabel,0,1);
+
+        //Password input 
+        TextField passInput = new TextField();
+        passInput.setPromptText("password");
+        GridPane.setConstraints(passInput,1,1);
+
+        Button loginButton = new Button("Login");
+        GridPane.setConstraints(loginButton,1,2);
+
+        grid.getChildren().addAll(nameLabel, nameInput, passLabel, passInput, loginButton);
+
+        Scene scene = new Scene(grid, 300, 200);
         window.setScene(scene);
+
         window.show();
 
     }
