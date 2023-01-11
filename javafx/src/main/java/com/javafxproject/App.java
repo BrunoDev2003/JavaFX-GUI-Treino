@@ -60,6 +60,7 @@ public class App extends Application  {
         GridPane.setConstraints(passInput,1,1);
 
         Button loginButton = new Button("Login");
+        loginButton.setOnAction(e -> isInt(nameInput, nameInput.getText()));
         GridPane.setConstraints(loginButton,1,2);
 
         grid.getChildren().addAll(nameLabel, nameInput, passLabel, passInput, loginButton);
@@ -69,6 +70,18 @@ public class App extends Application  {
 
         window.show();
 
+    }
+
+    private boolean isInt(TextField input, String message) {
+        try{
+            int age = Integer.parseInt(input.getText());
+            System.out.println("User is: " + age);
+            return true;
+        }catch(NumberFormatException e){
+            System.out.println("Error: " + message + "is not a number");
+            return false;
+        }
+        
     }
 
 
