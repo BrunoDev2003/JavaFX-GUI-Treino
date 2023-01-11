@@ -8,6 +8,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -35,6 +36,8 @@ public class App extends Application  {
     public void start(Stage primaryStage) throws IOException {
         window = primaryStage;
         window.setTitle("Bruno's window");
+
+        CheckBox box1 = new CheckBox("Bacon");
 
 
         GridPane grid = new GridPane();
@@ -67,6 +70,10 @@ public class App extends Application  {
 
         Scene scene = new Scene(grid, 300, 200);
         window.setScene(scene);
+
+        VBox layout = new VBox(10);
+        layout.setPadding(new Insets(5,5,5,5));
+        layout.getChildren().addAll(box1);
 
         window.show();
 
