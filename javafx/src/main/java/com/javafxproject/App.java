@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -25,9 +26,10 @@ import java.io.IOException;
  */
 public class App extends Application  {
 
-    private static Scene scene;
     Stage window;
-    Scene scene1, scene2;
+    static Scene scene;
+    Button button;
+    
     public static void main(String[] args) {
         launch();
     }
@@ -35,60 +37,19 @@ public class App extends Application  {
     @Override
     public void start(Stage primaryStage) throws IOException {
         window = primaryStage;
-        window.setTitle("Bruno's window");
+        window.setTitle("ChoiceBox Demo");
+        button = new Button("Click me");
 
-        CheckBox box1 = new CheckBox("Bacon");
-
-
-        GridPane grid = new GridPane();
-        grid.setPadding(new Insets(10, 10, 10, 10));
-        grid.setVgap(9);
-        grid.setHgap(9);
-
-        //Name label 
-        Label nameLabel = new Label("Username:");
-        GridPane.setConstraints(nameLabel, 0, 0);
-
-        //Name input 
-        TextField nameInput = new TextField("Bruno");
-        GridPane.setConstraints(nameInput, 1,0);
-
-        //Password label 
-        Label passLabel = new Label("Password:");
-        GridPane.setConstraints(passLabel,0,1);
-
-        //Password input 
-        TextField passInput = new TextField();
-        passInput.setPromptText("password");
-        GridPane.setConstraints(passInput,1,1);
-
-        Button loginButton = new Button("Login");
-        loginButton.setOnAction(e -> isInt(nameInput, nameInput.getText()));
-        GridPane.setConstraints(loginButton,1,2);
-
-        grid.getChildren().addAll(nameLabel, nameInput, passLabel, passInput, loginButton);
-
-        Scene scene = new Scene(grid, 300, 200);
-        window.setScene(scene);
+        ChoiceBox<String> choiceBox = new ChoiceBox<String>();
 
         VBox layout = new VBox(10);
-        layout.setPadding(new Insets(5,5,5,5));
-        layout.getChildren().addAll(box1);
+        layout.setPadding(new Insets(20,20,20,20));
+        layout.getChildren().addAll(button);
 
+
+        scene = new Scene(layout, 300, 500);
+        window.setScene(scene);
         window.show();
-
-    }
-
-    private boolean isInt(TextField input, String message) {
-        try{
-            int age = Integer.parseInt(input.getText());
-            System.out.println("User is: " + age);
-            return true;
-        }catch(NumberFormatException e){
-            System.out.println("Error: " + message + "is not a number");
-            return false;
-        }
-        
     }
 
 
