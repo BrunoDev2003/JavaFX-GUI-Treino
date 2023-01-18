@@ -42,9 +42,20 @@ public class App extends Application  {
 
         ChoiceBox<String> choiceBox = new ChoiceBox<String>();
 
+        //getItems returns the ObversvableList object which you can add items to 
+        choiceBox.getItems().add("Apples");
+        choiceBox.getItems().add("Bananas");
+        choiceBox.getItems().addAll("Bacon", "Ham", "Meatballs");
+
+        //set a default value
+        choiceBox.setValue("Apples");
+
+        button.setOnAction(e -> getChoice(choiceBox));
+
+
         VBox layout = new VBox(10);
         layout.setPadding(new Insets(20,20,20,20));
-        layout.getChildren().addAll(button);
+        layout.getChildren().addAll(choiceBox, button);
 
 
         scene = new Scene(layout, 300, 500);
@@ -53,6 +64,11 @@ public class App extends Application  {
     }
 
 
+
+    private void getChoice(ChoiceBox<String> choiceBox) {
+        String food = choiceBox.getValue();
+        System.out.print(food);
+    }
 
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
