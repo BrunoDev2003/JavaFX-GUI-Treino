@@ -47,6 +47,10 @@ public class App extends Application  {
         choiceBox.getItems().add("Bananas");
         choiceBox.getItems().addAll("Bacon", "Ham", "Meatballs");
 
+
+        //listen for selection changes
+        choiceBox.getSelectionModel().selectedItemProperty().addListener((v,oldValue,newValue.) -> System.out.println(newValue));
+
         //set a default value
         choiceBox.setValue("Apples");
 
