@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -29,6 +30,7 @@ public class App extends Application  {
     Stage window;
     static Scene scene;
     Button button;
+    ComboBox<String> comboBox;
     
     public static void main(String[] args) {
         launch();
@@ -40,34 +42,30 @@ public class App extends Application  {
         window.setTitle("ChoiceBox Demo");
         button = new Button("Click me");
 
-        ChoiceBox<String> choiceBox = new ChoiceBox<String>();
+        comboBox = new ComboBox<>();
+        comboBox.getItems().addAll(
+            "Item 1",
+            "Item 2",
+            
+        );
 
-        //getItems returns the ObversvableList object which you can add items to 
-        choiceBox.getItems().add("Apples");
-        choiceBox.getItems().add("Bananas");
-        choiceBox.getItems().addAll("Bacon", "Ham", "Meatballs");
-
-
-        //listen for selection changes
-        choiceBox.getSelectionModel().selectedItemProperty().addListener((v,oldValue,newValue.) -> System.out.println(newValue));
-
-        //set a default value
-        choiceBox.setValue("Apples");
-
-        button.setOnAction(e -> getChoice(choiceBox));
+        comboBox.setPromptText("What is your favorite movie?");
+        button.setOnAction(e -> printMovie());
 
 
-        VBox layout = new VBox(10);
-        layout.setPadding(new Insets(20,20,20,20));
-        layout.getChildren().addAll(choiceBox, button);
+        
 
 
         scene = new Scene(layout, 300, 500);
         window.setScene(scene);
         window.show();
+
     }
 
-
+    //Print out a movie 
+    private void printMovie() {
+        System.out.println(comboBox.getValue());
+    }
 
     private void getChoice(ChoiceBox<String> choiceBox) {
         String food = choiceBox.getValue();
