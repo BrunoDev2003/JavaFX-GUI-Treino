@@ -12,6 +12,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -30,7 +32,8 @@ public class App extends Application  {
     Stage window;
     static Scene scene;
     Button button;
-    ComboBox<String> comboBox;
+    ListView <String> listView;
+
     
     public static void main(String[] args) {
         launch();
@@ -39,37 +42,20 @@ public class App extends Application  {
     @Override
     public void start(Stage primaryStage) throws IOException {
         window = primaryStage;
-        window.setTitle("ChoiceBox Demo");
-        button = new Button("Click me");
+        window.setTitle("Bruno");
+        button = new Button("Submit");
 
-        comboBox = new ComboBox<>();
-        comboBox.getItems().addAll(
-            "Item 1",
-            "Item 2",
-            
-        );
+        listView = new ListView<String>();
+        listView.getItems().addAll("movies", "movies2", "movies3", "movies4", "movies5");
+        listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
-        comboBox.setPromptText("What is your favorite movie?");
-        button.setOnAction(e -> printMovie());
+        VBox layout = new VBox(10);
+        layout.setPadding(new Insets(20,20,20,20));
+        layout.getChildren().addAll(button);
 
-
-        
-
-
-        scene = new Scene(layout, 300, 500);
+        scene = new Scene(layout, 300, 250);
         window.setScene(scene);
         window.show();
-
-    }
-
-    //Print out a movie 
-    private void printMovie() {
-        System.out.println(comboBox.getValue());
-    }
-
-    private void getChoice(ChoiceBox<String> choiceBox) {
-        String food = choiceBox.getValue();
-        System.out.print(food);
     }
 
     static void setRoot(String fxml) throws IOException {
