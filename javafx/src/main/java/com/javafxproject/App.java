@@ -15,6 +15,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -31,8 +33,7 @@ public class App extends Application  {
 
     Stage window;
     static Scene scene;
-    Button button;
-    ListView <String> listView;
+    TreeView<String> tree;
 
     
     public static void main(String[] args) {
@@ -42,20 +43,30 @@ public class App extends Application  {
     @Override
     public void start(Stage primaryStage) throws IOException {
         window = primaryStage;
-        window.setTitle("Bruno");
-        button = new Button("Submit");
+        window.setTitle("JavaFX - thenewboston");
 
-        listView = new ListView<String>();
-        listView.getItems().addAll("movies", "movies2", "movies3", "movies4", "movies5");
-        listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        TreeItem<String> root,bruno,bruno2;
 
-        VBox layout = new VBox(10);
-        layout.setPadding(new Insets(20,20,20,20));
-        layout.getChildren().addAll(button);
+        //Root
+        root = new TreeItem<>();
+        root.setExpanded(true);
 
-        scene = new Scene(layout, 300, 250);
+        //bruno
+        bruno = makeBranch("Bruno", root);
+        makeBranch("item1 ", bruno);
+        //bruno2
+
+        //Layout
+        StackPane layout = new StackPane();
+        Scene scene = new Scene(layout, 300, 250);
         window.setScene(scene);
         window.show();
+
+        
+    }
+
+    private TreeItem<String> makeBranch(String string, TreeItem<String> root) {
+        return null;
     }
 
     static void setRoot(String fxml) throws IOException {
