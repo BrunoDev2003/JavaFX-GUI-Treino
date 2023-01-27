@@ -54,6 +54,7 @@ public class App extends Application  {
         //bruno
         bruno = makeBranch("Bruno", root);
         makeBranch("item1 ", bruno);
+        makeBranch("item2", bruno);
         //bruno2
 
         //Layout
@@ -65,8 +66,13 @@ public class App extends Application  {
         
     }
 
-    private TreeItem<String> makeBranch(String string, TreeItem<String> root) {
-        return null;
+    //create branches
+    public TreeItem<String> makeBranch(String title, TreeItem<String> parent){
+        TreeItem<String> item = new TreeItem<>(title);
+        item.setExpanded(true);
+        parent.getChildren().add(item);
+        return item;
+        
     }
 
     static void setRoot(String fxml) throws IOException {
